@@ -1,0 +1,6 @@
+## Ignore vscode config
+.vscode
+
+
+## Ignore build files
+*.out
