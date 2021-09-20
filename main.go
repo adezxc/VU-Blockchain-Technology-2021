@@ -1,13 +1,19 @@
 package main
 
-import "fmt"
-import "encoding/hex"
+import 
+(
+    "fmt"
+    "io/ioutil"
+    "log"
+)
+//import "encoding/hex"
 
 func main() {
-	src := []byte("Hello World!")
+    src, err := ioutil.ReadFile("test.txt")
+    if err != nil {
+        log.Fatal(err)
+    }
 
-	dst := make([]byte, 1024)
-    test := hex.Encode(dst, src)
+    fmt.Printf("%.8b", src)
 
-    fmt.Printf("%s %d\n", dst, test)
 }
