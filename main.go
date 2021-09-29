@@ -1,11 +1,11 @@
 package main
 
 import (
+	//"encoding/binary"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
-	"encoding/binary"
 )
 
 //import "encoding/hex"
@@ -19,26 +19,24 @@ func main() {
 	fmt.Println(hash(src))
 }
 
-func hash(text []byte) string {
-	prime := 1297
-	var hash uint64 = 0
+func hash(text []byte) (result string) {
+	prime := uint64(1297)
+	var hash uint64 = prime
 	if len(text) == 0 {
-		return ""
+		return
 	}
-	var char = binary.BigEndian.Uint64(text)
 
-	placeholder := char
 	for i := 0; i < len(text); i++ {
-		char = (char * uint64(prime)) % placeholder
-		hash = (hash << 11) + (char % (uint64(i) + 1))
+		placeholder := hash
+		hash = (hash >> 7) ^ ((placeholder * (uint64(text[i])) >> 2))
+		
 	}
 
-	var charlist string = "0123456789abcdef"
+	var charlist string = "01"
 	var hashString = strconv.FormatUint(hash, 10)
 
-	result := ""
-	for i := 0; i < 64; i++ {
-		index := hashString[i%len(hashString)] + (byte)(i*prime)
+	for i := 0; i < 256; i++ {
+		index := hashString[i%len(hashString)] + (byte)(uint64(i)*prime)
 		result += (string)(charlist[index%(byte)(len(charlist))])
 	}
 
