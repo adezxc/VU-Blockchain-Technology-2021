@@ -9,6 +9,8 @@ import (
 )
 
 func generate_data() {
+	sameLetter := true
+	randomString := ""
 	file10, err := os.Create("test_files/10chars")
 	if err != nil {
 		log.Fatal(err)
@@ -44,9 +46,18 @@ func generate_data() {
 		file1000.WriteString(fmt.Sprintf("%s\n%s\n", firstString, secondString))
 	}
 	for i := 0; i < 100000; i++ {
+		sameLetter = true
 		firstString := randstr.String(957)
 		file100000.WriteString(fmt.Sprintf("%s\n", firstString))
-		firstString = firstString[:333] + randstr.String(1) + firstString[334:]
+		for sameLetter == true {
+			randomString = randstr.String(1)
+			if (string(firstString[333]) != randomString) {
+				sameLetter = false
+			} else {
+				continue
+			}
+		}
+		firstString = firstString[:333] + randomString + firstString[334:]
 		file100000.WriteString(fmt.Sprintf("%s\n", firstString))
 	}
 	defer file10.Close()
