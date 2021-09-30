@@ -23,14 +23,14 @@ func isPrime(n int) bool {
  
 // Function to return the smallest
 // prime number greater than N
-func nextPrime(N int) int {
+func nextPrime(n int) int {
  
     // Base case
-    if (N <= 1) {
+    if (n <= 1) {
 	return 2
     }
- 
-    prime := N
+
+    prime := n
     found := false
  
     // Loop continuously until isPrime returns
@@ -43,5 +43,5 @@ func nextPrime(N int) int {
 	}
     }
  
-    return prime;
+    return prime
 }
