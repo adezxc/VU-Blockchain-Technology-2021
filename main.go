@@ -1,59 +1,63 @@
 package main
 
 import (
-	//"encoding/binary"
+	"bufio"
+	//"crypto/md5"
+	"crypto/sha256"
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 	"time"
-	"crypto/sha256"
-	"crypto/md5"
 )
 
-//import "encoding/hex"
-
 func main() {
-	src, err := os.ReadFile("konstitucija.txt")
+	file, err := os.Open("test.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(hash(src))
+	scanner := bufio.NewScanner(file)
 	start := time.Now()
-	sum := md5.Sum(src)
-	fmt.Println(sum)
+	for scanner.Scan() {
+		hash(scanner.Bytes())
+	}
 	elapsed := time.Since(start)
-	log.Printf("MD5 took %s", elapsed)
+	fmt.Println(elapsed)
+	file.Close()
+	
+	
+	file, err = os.Open("test.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+
+	scanner1 := bufio.NewScanner(file)
 	start = time.Now()
-	sum1 := sha256.Sum256(src)
-	fmt.Println(sum1)
+	for scanner1.Scan() {
+		sha256.Sum256(scanner1.Bytes())
+	}
 	elapsed = time.Since(start)
-	log.Printf("Sha took %s", elapsed)
-}
+	fmt.Println(elapsed)
 
-func hash(text []byte) (result string) {
-	start := time.Now()
-	prime := uint64(1297)
-	var hash uint64 = prime
-	if len(text) == 0 {
-		return
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
 	}
+	/*for i := 0; i < 50000; i++ {
+		start := time.Now()
+		fmt.Println(hash(src))
+		elapsed := time.Since(start)
+		log.Printf("My algo took %s", elapsed)
+		start = time.Now()
+		sum := md5.Sum(src)
+		fmt.Println(sum)
+		elapsed = time.Since(start)
+		log.Printf("MD5 took %s", elapsed)
+		start = time.Now()
+		sum1 := sha256.Sum256(src)
+		fmt.Println(sum1)
+		elapsed = time.Since(start)
+		log.Printf("Sha took %s", elapsed)
+	}*/
 
-	for i := 0; i < len(text); i++ {
-		placeholder := hash
-		hash = (hash >> 7) ^ ((placeholder * (uint64(text[i])) >> 2))
-	}
-
-	var charlist string = "01"
-	var hashString = strconv.FormatUint(hash, 10)
-
-	for i := 0; i < 256; i++ {
-		index := hashString[i%len(hashString)] + (byte)(uint64(i)*prime)
-		result += (string)(charlist[index%(byte)(len(charlist))])
-	}
-	elapsed := time.Since(start)
-	log.Printf("Function took %s", elapsed)
-
-	return result
 }
