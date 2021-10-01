@@ -19,11 +19,11 @@ func stringpairs() {
 		first := Scanner10.Bytes()
 		Scanner10.Scan()
 		second := Scanner10.Bytes()
-		if bytes.Equal(first, second) {
-			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!!")
+		if bytes.Equal(hash(first), hash(second)) {
+			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!! pair %d", i)
 		}
 	}
-	defer file10.Close()
+	file10.Close()
 	file100, err := os.Open("test_files/100chars")
 	if err != nil {
 		log.Fatal(err)
@@ -34,11 +34,11 @@ func stringpairs() {
 		first := Scanner100.Bytes()
 		Scanner100.Scan()
 		second := Scanner100.Bytes()
-		if bytes.Equal(first, second) {
-			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!!")
+		if bytes.Equal(hash(first), hash(second)) {
+			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!! pair %d\n", i)
 		}
 	}
-	defer file100.Close()
+	file100.Close()
 	file500, err := os.Open("test_files/500chars")
 	if err != nil {
 		log.Fatal(err)
@@ -49,11 +49,11 @@ func stringpairs() {
 		first := Scanner500.Bytes()
 		Scanner500.Scan()
 		second := Scanner500.Bytes()
-		if bytes.Equal(first, second) {
-			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!!")
+		if bytes.Equal(hash(first), hash(second)) {
+			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!! pair %d\n", i)
 		}
 	}
-	defer file500.Close()
+	file500.Close()
 	file1000, err := os.Open("test_files/1000chars")
 	if err != nil {
 		log.Fatal(err)
@@ -64,9 +64,9 @@ func stringpairs() {
 		first := Scanner1000.Bytes()
 		Scanner1000.Scan()
 		second := Scanner1000.Bytes()
-		if bytes.Equal(first, second) {
-			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!!")
+		if bytes.Equal(hash(first), hash(second)) {
+			fmt.Printf("BZZ!! BZZ!! COLLISION DETECTED!!! pair %d\n", i)
 		}
 	}
-	defer file1000.Close()
+	file1000.Close()
 }
