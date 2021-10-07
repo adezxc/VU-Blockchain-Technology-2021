@@ -13,7 +13,7 @@ Bent minimaliai pakeitus įvedimą, pvz.vietoj "Lietuva" pateikus "lietuva", m
 
 ## Kaip naudotis programa
 
-```bash
+```
 go build ./ // Build the program
 ./hash
 
