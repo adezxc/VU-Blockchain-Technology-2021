@@ -16,7 +16,7 @@ Bent minimaliai pakeitus įvedimą, pvz.vietoj "Lietuva" pateikus "lietuva", m
 ```bash
 go build ./ // Build the program
 ./hash
-```
+
 Usage of ./hash:
   -comp
         do you want to check for collisions
@@ -28,9 +28,7 @@ Usage of ./hash:
         does this need generating data
   -kon
         do you want algorithm speed comparison
-  -s string
-        provide string you want to hash
-
+```
 ## Funkcijos testavimas 
 
 Du failai su vienu bet skirtingu simboliu
