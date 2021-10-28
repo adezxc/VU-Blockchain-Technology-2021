@@ -1,4 +1,4 @@
-package hash
+package github.com/adezxc/VU-Blockchain-Technology-2021/hash
 
 func Hash(text []byte) (h []byte) {
 	prime := 1297

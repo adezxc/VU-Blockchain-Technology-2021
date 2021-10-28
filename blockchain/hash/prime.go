@@ -1,4 +1,4 @@
-package hash 
+package github.com/adezxc/VU-Blockchain-Technology-2021/hash
 
 func isPrime(n int) bool {
     // Corner cases
