@@ -1,4 +1,4 @@
-package hash 
+package myHash 
 
 func isPrime(n int) bool {
     // Corner cases

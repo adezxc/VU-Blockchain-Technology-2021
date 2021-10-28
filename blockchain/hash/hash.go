@@ -1,4 +1,4 @@
-package hash 
+package myHash
 
 func Hash(text []byte) (h []byte) {
 	prime := 1297
