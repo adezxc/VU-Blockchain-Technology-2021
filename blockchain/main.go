@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-    chain := blockchain.InitBlockChain()
+    chain := bc.InitBlockChain()
 
     chain.AddBlock("first block after genesis")
     chain.AddBlock("second block after genesis")
@@ -22,7 +22,7 @@ func main() {
         fmt.Printf("data: %s\n", block.Data)
         fmt.Printf("hash: %x\n", block.Hash)
 
-        pow := blockchain.NewProofOfWork(block)
+        pow := bc.NewProofOfWork(block)
         fmt.Printf("Pow: %s\n", strconv.FormatBool(pow.Validate()))
         fmt.Println()
     }

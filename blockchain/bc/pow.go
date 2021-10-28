@@ -40,7 +40,7 @@ func (pow *ProofOfWork) InitNonce(nonce int) []byte {
     data := bytes.Join(
         [][]byte{
             pow.Block.PrevHash,
-            pow.Block.Data,
+            pow.Block.Transactions,
             ToHex(int64(nonce)),
             ToHex(int64(Difficulty)),
         },
@@ -54,8 +54,6 @@ func (pow *ProofOfWork) Run() (int, []byte) {
     var hash []byte
 
     nonce := 0
-        // This is essentially an infinite loop due to how large
-        // MaxInt64 is.
     for nonce < math.MaxInt64 {
         data := pow.InitNonce(nonce)
         hash = myHash.Hash(data)

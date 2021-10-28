@@ -4,16 +4,22 @@ type BlockChain struct {
     Blocks []*Block
 }
 
-type Block struct {
-    Hash     []byte
-    Data     []byte
+type Header struct {
     PrevHash []byte
-    Nonce    int
+    Hash []byte
+    Timestamp string
+    Version string
+    Nonce int
+    DifficultyTarget int
+}
+type Block struct {
+    Header
+    Transactions []byte
 }
 
 func CreateBlock(data string, prevHash []byte) *Block {
-    block := &Block{[]byte{}, []byte(data), prevHash, 0} 
-        // Don't forget to add the 0 at the end for the nonce!
+    header := Header{Nonce: 0, DifficultyTarget: 0, Version: "1", PrevHash: prevHash}
+    block := &Block{header, []byte(data)} 
     pow := NewProofOfWork(block)
     nonce, hash := pow.Run()
 
