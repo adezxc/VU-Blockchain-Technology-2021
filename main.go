@@ -9,7 +9,6 @@ import (
 
 func main() {
 	fmt.Println("yes")
-	hashfunction.Hash()
 	chain := bc.InitBlockChain()
 	fmt.Println("yes")
 	chain.AddBlock("first block after genesis")
