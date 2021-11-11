@@ -11,7 +11,7 @@ import (
     
     "github.com/adezxc/VU-Blockchain-Technology-2021/blockchain/hash"
 )
-const Difficulty = 12
+const Difficulty = 1
 
 type ProofOfWork struct {
   Block *Block
@@ -51,12 +51,12 @@ func (pow *ProofOfWork) InitNonce(nonce int) []byte {
 
 func (pow *ProofOfWork) Run() (int, []byte) {
     var intHash big.Int
-    var hash []byte
+    var hash [32]byte
 
     nonce := 0
     for nonce < math.MaxInt64 {
         data := pow.InitNonce(nonce)
-        hash = myHash.Hash(data)
+        hash = sha256.Sum256(data)
 
         fmt.Printf("\r%x", hash)
         intHash.SetBytes(hash[:])

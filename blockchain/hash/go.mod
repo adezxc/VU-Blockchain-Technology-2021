@@ -1,3 +1,3 @@
-module github.com/adezxc/VU-Blockchain-Technology-2021/blockchain/hash
+module hashfunction 
 
 go 1.17
