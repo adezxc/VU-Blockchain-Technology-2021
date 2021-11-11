@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/adezxc/VU-Blockchain-Technology-2021/blockchain"
 	"github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction"
 )
 
@@ -15,7 +16,7 @@ func main() {
 
 	chain.AddBlock("second block after genesis")
 	chain.AddBlock("third block after genesis")
-	
+
 	for _, block := range chain.Blocks {
 
 		fmt.Printf("Previous hash: %x\n", block.PrevHash)
