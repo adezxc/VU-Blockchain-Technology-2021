@@ -5,12 +5,11 @@ import (
 	"strconv"
 
 	"github.com/adezxc/VU-Blockchain-Technology-2021/blockchain"
-	"github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction"
 )
 
 func main() {
 	fmt.Println("yes")
-	chain := bc.InitBlockChain()
+	chain := blockchain.InitBlockChain()
 	fmt.Println("yes")
 	chain.AddBlock("first block after genesis")
 
@@ -20,10 +19,10 @@ func main() {
 	for _, block := range chain.Blocks {
 
 		fmt.Printf("Previous hash: %x\n", block.PrevHash)
-		fmt.Printf("data: %s\n", block.Data)
+		fmt.Printf("data: %s\n", block.Transactions)
 		fmt.Printf("hash: %x\n", block.Hash)
 
-		pow := bc.NewProofOfWork(block)
+		pow := blockchain.NewProofOfWork(block)
 		fmt.Printf("Pow: %s\n", strconv.FormatBool(pow.Validate()))
 		fmt.Println()
 	}

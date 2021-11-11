@@ -1,85 +1,85 @@
-package blockchain 
+package blockchain
 
 import (
-    "bytes"
-    "crypto/sha256"
-    "encoding/binary"
-    "fmt"
-    "log"
-    "math"
-    "math/big"
-    
-    "github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction"
+	"bytes"
+	"encoding/binary"
+	"fmt"
+	"log"
+	"math"
+	"math/big"
+
+	"github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction"
 )
+
 const Difficulty = 1
 
 type ProofOfWork struct {
-  Block *Block
-  Target *big.Int
+	Block  *Block
+	Target *big.Int
 }
 
 func NewProofOfWork(b *Block) *ProofOfWork {
-    target := big.NewInt(1)
-    target.Lsh(target, uint(256-Difficulty))
+	target := big.NewInt(1)
+	target.Lsh(target, uint(256-Difficulty))
 
-    pow := &ProofOfWork{b, target}
+	pow := &ProofOfWork{b, target}
 
-    return pow
+	return pow
 }
 
 func ToHex(num int64) []byte {
-    buff := new(bytes.Buffer)
-    err := binary.Write(buff, binary.BigEndian, num)
-    if err != nil {
-        log.Panic(err)
-    }
-    return buff.Bytes()
+	buff := new(bytes.Buffer)
+	err := binary.Write(buff, binary.BigEndian, num)
+	if err != nil {
+		log.Panic(err)
+	}
+	return buff.Bytes()
 }
 
 func (pow *ProofOfWork) InitNonce(nonce int) []byte {
-    data := bytes.Join(
-        [][]byte{
-            pow.Block.PrevHash,
-            pow.Block.Transactions,
-            ToHex(int64(nonce)),
-            ToHex(int64(Difficulty)),
-        },
-        []byte{},
-    )
-    return data
+	data := bytes.Join(
+		[][]byte{
+			pow.Block.PrevHash,
+			pow.Block.Transactions,
+			ToHex(int64(nonce)),
+			ToHex(int64(Difficulty)),
+		},
+		[]byte{},
+	)
+	return data
 }
 
 func (pow *ProofOfWork) Run() (int, []byte) {
-    var intHash big.Int
-    var hash []byte
+	var intHash big.Int
+	var hash []byte
 
-    nonce := 0
-    for nonce < math.MaxInt64 {
-        data := pow.InitNonce(nonce)
-        hash = hashfunction.Hash(data)
+	nonce := 0
+	for nonce < math.MaxInt64 {
+		data := pow.InitNonce(nonce)
+		hash = hashfunction.Hash(data)
 
-        fmt.Printf("\r%x", hash)
-        intHash.SetBytes(hash[:])
+		fmt.Printf("\r%x", hash)
+		intHash.SetBytes(hash[:])
 
-        if intHash.Cmp(pow.Target) == -1 {
-            break
-        } else {
-            nonce++
-        }
+		if intHash.Cmp(pow.Target) == -1 {
+			break
+		} else {
+			nonce++
+		}
 
-    }
-    fmt.Println()
+	}
+	fmt.Println()
 
-    return nonce, hash[:]
+	return nonce, hash[:]
 }
 
 func (pow *ProofOfWork) Validate() bool {
-    var intHash big.Int
+	var intHash big.Int
 
-    data := pow.InitNonce(pow.Block.Nonce)
+	data := pow.InitNonce(pow.Block.Nonce)
 
-    hash := hashfunction.Hash(data)
-    intHash.SetBytes(hash[:])
+	hash := hashfunction.Hash(data)
+	intHash.SetBytes(hash[:])
 
-    return intHash.Cmp(pow.Target) == -1
+	return intHash.Cmp(pow.Target) == -1
 }
