@@ -4,6 +4,7 @@ type BlockChain struct {
     Blocks []*Block
 }
 
+
 type Header struct {
     PrevHash []byte
     Hash []byte
