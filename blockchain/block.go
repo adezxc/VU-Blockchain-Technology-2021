@@ -1,4 +1,4 @@
-package bc 
+package blockchain 
 
 type BlockChain struct {
     Blocks []*Block

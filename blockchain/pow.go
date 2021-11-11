@@ -1,4 +1,4 @@
-package bc 
+package blockchain 
 
 import (
     "bytes"
@@ -9,7 +9,7 @@ import (
     "math"
     "math/big"
     
-    "github.com/adezxc/VU-Blockchain-Technology-2021/blockchain/hash"
+    "github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction"
 )
 const Difficulty = 1
 
