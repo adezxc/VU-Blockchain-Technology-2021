@@ -2,28 +2,18 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-
-	"github.com/adezxc/VU-Blockchain-Technology-2021/blockchain"
 )
 
 func main() {
-	chain := blockchain.InitBlockChain()
-	chain.AddBlock("first block after genesis")
+	bc := NewBlockchain()
 
-	chain.AddBlock("second block after genesis")
-	chain.AddBlock("third block after genesis")
-	chain.AddBlock("yes")
+	bc.AddBlock("Send 1 BTC to Ivan")
+	bc.AddBlock("Send 2 more BTC to Ivan")
 
-	for _, block := range chain.Blocks {
-
-		fmt.Printf("Previous hash: %x\n", block.PrevHash)
-		fmt.Printf("data: %s\n", block.Transactions)
-		fmt.Printf("hash: %x\n", block.Hash)
-
-		pow := blockchain.NewProofOfWork(block)
-		fmt.Printf("Pow: %s\n", strconv.FormatBool(pow.Validate()))
+	for _, block := range bc.blocks {
+		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Hash: %x\n", block.Hash)
 		fmt.Println()
 	}
-
 }

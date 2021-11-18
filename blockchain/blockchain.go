@@ -1,46 +1,18 @@
-package blockchain 
+package blockchain
 
-import "time"
-type BlockChain struct {
-    Blocks []*Block
+// Blockchain keeps a sequence of Blocks
+type Blockchain struct {
+	blocks []*Block
 }
 
-
-type Header struct {
-    PrevHash []byte
-    Hash []byte
-    Timestamp time.Time
-    Version string
-    Nonce int
-    DifficultyTarget int
-}
-type Block struct {
-    Header
-    Transactions []byte
+// AddBlock saves provided data as a block in the blockchain
+func (bc *Blockchain) AddBlock(data string) {
+	prevBlock := bc.blocks[len(bc.blocks)-1]
+	newBlock := NewBlock(data, prevBlock.Hash)
+	bc.blocks = append(bc.blocks, newBlock)
 }
 
-func CreateBlock(data string, prevHash []byte) *Block {
-    header := Header{Nonce: 0, Timestamp: time.Now(), DifficultyTarget: 0, Version: "1", PrevHash: prevHash}
-    block := &Block{header, []byte(data)} 
-    pow := NewProofOfWork(block)
-    nonce, hash := pow.Run()
-
-    block.Hash = hash[:]
-    block.Nonce = nonce
-
-    return block
-}
-
-func (chain *BlockChain) AddBlock(data string) {
-    prevBlock := chain.Blocks[len(chain.Blocks)-1]
-    new := CreateBlock(data, prevBlock.Hash)
-    chain.Blocks = append(chain.Blocks, new)
-}
-
-func Genesis() *Block {
-	return CreateBlock("Genesis", []byte{})
-}
-
-func InitBlockChain() *BlockChain {
-	return &BlockChain{[]*Block{Genesis()}}
+// NewBlockchain creates a new Blockchain with genesis Block
+func NewBlockchain() *Blockchain {
+	return &Blockchain{[]*Block{NewGenesisBlock()}}
 }
