@@ -20,7 +20,7 @@ func Hash(text []byte) (h [32]byte) {
 	} else {
 		for i := 0; i < 32; i++ {
 			value := byte(i*nextPrime(prime2)) + byte(hash)*text[(i+1)%len(text)]
-			h = append(h, (value * byte(i+1)))
+			h[i] = value * byte(i+1)
 		}
 	}
 
