@@ -1,5 +1,6 @@
 package blockchain 
 
+import "time"
 type BlockChain struct {
     Blocks []*Block
 }
@@ -8,7 +9,7 @@ type BlockChain struct {
 type Header struct {
     PrevHash []byte
     Hash []byte
-    Timestamp string
+    Timestamp time.Time
     Version string
     Nonce int
     DifficultyTarget int
@@ -19,7 +20,7 @@ type Block struct {
 }
 
 func CreateBlock(data string, prevHash []byte) *Block {
-    header := Header{Nonce: 0, DifficultyTarget: 0, Version: "1", PrevHash: prevHash}
+    header := Header{Nonce: 0, Timestamp: time.Now(), DifficultyTarget: 0, Version: "1", PrevHash: prevHash}
     block := &Block{header, []byte(data)} 
     pow := NewProofOfWork(block)
     nonce, hash := pow.Run()

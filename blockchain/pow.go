@@ -10,7 +10,7 @@ import (
 	"github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction"
 )
 
-const Difficulty = 1
+const Difficulty = 5 
 
 type ProofOfWork struct {
 	Block  *Block
