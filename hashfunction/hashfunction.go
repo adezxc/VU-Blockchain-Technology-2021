@@ -1,6 +1,6 @@
 package hashfunction 
 
-func Hash(text []byte) (h []byte) {
+func Hash(text []byte) (h [32]byte) {
 	prime := 1297
 	var prime2 = nextPrime(prime)
 	hash := uint64(prime)
@@ -15,7 +15,7 @@ func Hash(text []byte) (h []byte) {
 	if len(text) == 0 {
 		for i := 0; i < 32; i++ {
 			value := byte(i*nextPrime(prime2)) + byte(hash)
-			h = append(h, value*byte(i+1))
+			h[i] = value*byte(i+1)
 		}
 	} else {
 		for i := 0; i < 32; i++ {

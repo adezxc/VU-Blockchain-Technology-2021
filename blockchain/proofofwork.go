@@ -49,7 +49,7 @@ func (pow *ProofOfWork) prepareData(nonce int) []byte {
 // Run performs a proof-of-work
 func (pow *ProofOfWork) Run() (int, []byte) {
 	var hashInt big.Int
-	var hash []byte
+	var hash [32]byte
 	nonce := 0
 
 	fmt.Printf("Mining the block containing \"%s\"\n", pow.block.Data)
