@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/adezxc/VU-Blockchain-Technology-2021/blockchain"
 )
 
 func main() {
-	bc := blockchain.NewBlockchain()
+	bc := NewBlockchain()
 
-	bc.AddBlock("Send 1 BTC to Ivan")
-	bc.AddBlock("Send 2 more BTC to Ivan")
+	bc.AddBlock("Send 2 VUCoin to Petras")
+	bc.AddBlock("Send 4 more VUCoin to Petras")
 
-	for _, block := range bc.Blocks {
+	for _, block := range bc.blocks {
 		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
 		fmt.Printf("Data: %s\n", block.Data)
 		fmt.Printf("Hash: %x\n", block.Hash)
