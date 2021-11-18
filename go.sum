@@ -1,4 +1,8 @@
 github.com/adezxc/VU-Blockchain-Technology-2021/blockchain v0.0.0-20211118182805-b6997590539a h1:82AbX48OqXlpaf3EMNyHYHO5ycwdTyOa99l4vXMm3IY=
 github.com/adezxc/VU-Blockchain-Technology-2021/blockchain v0.0.0-20211118182805-b6997590539a/go.mod h1:J9sQtqb87kQ/fcWOsCLz5bgvfl9C1Za1RGs87MZhAl4=
+github.com/adezxc/VU-Blockchain-Technology-2021/blockchain v0.0.0-20211118183751-760c96ebe03f h1:/0cUyTqDp92u2sfpsN4BBpyaLfy581Uu5ZsB1oL575M=
+github.com/adezxc/VU-Blockchain-Technology-2021/blockchain v0.0.0-20211118183751-760c96ebe03f/go.mod h1:J9sQtqb87kQ/fcWOsCLz5bgvfl9C1Za1RGs87MZhAl4=
 github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction v0.0.0-20211111195316-2509094a5dd1 h1:y4ESOVUUpo4QWwvwBiRIQcyf4ApIxCpSsL0haxV2YXI=
 github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction v0.0.0-20211111195316-2509094a5dd1/go.mod h1:+wVdTM29gkYkvLBz0lH6S0UFbQApfita7sDp1xhwBko=
+github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction v0.0.0-20211118183751-760c96ebe03f h1:uzM3wgm6BeSKS8JOOsA3OCtrPoGBDLxBNgxoEM65dzI=
+github.com/adezxc/VU-Blockchain-Technology-2021/hashfunction v0.0.0-20211118183751-760c96ebe03f/go.mod h1:+wVdTM29gkYkvLBz0lH6S0UFbQApfita7sDp1xhwBko=
