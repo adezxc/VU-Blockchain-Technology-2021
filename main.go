@@ -8,13 +8,12 @@ import (
 )
 
 func main() {
-	fmt.Println("yes")
 	chain := blockchain.InitBlockChain()
-	fmt.Println("yes")
 	chain.AddBlock("first block after genesis")
 
 	chain.AddBlock("second block after genesis")
 	chain.AddBlock("third block after genesis")
+	chain.AddBlock("yes")
 
 	for _, block := range chain.Blocks {
 

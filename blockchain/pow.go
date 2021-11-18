@@ -3,7 +3,6 @@ package blockchain
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"log"
 	"math"
 	"math/big"
@@ -58,7 +57,6 @@ func (pow *ProofOfWork) Run() (int, []byte) {
 		data := pow.InitNonce(nonce)
 		hash = hashfunction.Hash(data)
 
-		fmt.Printf("\r%x", hash)
 		intHash.SetBytes(hash[:])
 
 		if intHash.Cmp(pow.Target) == -1 {
@@ -68,7 +66,6 @@ func (pow *ProofOfWork) Run() (int, []byte) {
 		}
 
 	}
-	fmt.Println()
 
 	return nonce, hash[:]
 }
