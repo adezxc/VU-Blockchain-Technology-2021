@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/adezxc/VU-Blockchain-Technology-2021/blockchain"
 )
 
 func main() {
