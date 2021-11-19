@@ -6,6 +6,11 @@ import (
 )
 
 func main() {
+	Users := generateUsers()
+	Transactions = generateTransactions(Users)
+	checkTransactions(Transactions, Users)
+
+	fmt.Printf("%d", len(Transactions))
 	bc := NewBlockchain()
 
 	bc.AddBlock("Send 2 VUCoin to Petras")
@@ -22,4 +27,5 @@ func main() {
 		fmt.Printf("PoW: %s\n", strconv.FormatBool(pow.Validate()))
 		fmt.Println()
 	}
+	fmt.Printf("%d", len(Transactions))
 }
