@@ -3,7 +3,7 @@ package main
 import (
 	//"strconv"
 	"time"
-	"math/rand"
+	//"math/rand"
 )
 
 const Version = "v1.0"
@@ -28,11 +28,6 @@ func NewBlock(data string, prevBlockHash []byte) *Block {
 
 	block.Hash = hash[:]
 	block.Nonce = nonce
-	for i := 0; i < 100; i++ {
-		index := rand.Intn(len(Transactions))
-		block.Data = append(block.Data[:], TransactionToByteArray(Transactions[index])[:]...)
-		remove(Transactions, index)
-	}
 
 	return block
 }

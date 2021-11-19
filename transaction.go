@@ -105,3 +105,12 @@ func remove(transactions []Transaction, index int) []Transaction {
     return append(transactions[:index], transactions[index+1:]...)
 }
 
+func getTransactionsForBlock(trans []Transaction) []Transaction {
+	var transactions []Transaction
+	for i:=0; i < 100; i++ {
+		index := rand.Intn(len(Transactions))
+		transactions = append(transactions, trans[index])
+		remove(trans, index)
+	}
+	return transactions
+}

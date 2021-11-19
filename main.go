@@ -9,9 +9,9 @@ func main() {
 	Users := generateUsers()
 	Transactions = generateTransactions(Users)
 	checkTransactions(Transactions, Users)
+	getTransactionsForBlock(Transactions)
 
 	bc := NewBlockchain()
-
 	bc.AddBlock("Send 2 VUCoin to Petras")
 	bc.AddBlock("Send 4 more VUCoin to Petras")
 	bc.AddBlock("Test work")
