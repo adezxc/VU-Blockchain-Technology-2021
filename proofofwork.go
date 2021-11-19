@@ -13,7 +13,7 @@ var (
 )
 
 // Bloko kasimo sunkumas
-const targetBits = 16 
+const targetBits = 24
 
 // PoW struktūra
 type ProofOfWork struct {
