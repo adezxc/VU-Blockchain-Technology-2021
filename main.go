@@ -10,11 +10,12 @@ func main() {
 	Transactions = generateTransactions(Users)
 	checkTransactions(Transactions, Users)
 
-	fmt.Printf("%d", len(Transactions))
 	bc := NewBlockchain()
 
 	bc.AddBlock("Send 2 VUCoin to Petras")
 	bc.AddBlock("Send 4 more VUCoin to Petras")
+	bc.AddBlock("Test work")
+	bc.AddBlock("one more")
 
 	for _, block := range bc.blocks {
 		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
@@ -27,5 +28,4 @@ func main() {
 		fmt.Printf("PoW: %s\n", strconv.FormatBool(pow.Validate()))
 		fmt.Println()
 	}
-	fmt.Printf("%d", len(Transactions))
 }
