@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.0;
 
 contract Marketplace {
     string public name;
@@ -29,18 +29,21 @@ contract Marketplace {
         bool purchased
     );
 
-    constructor() public {
-        name = "Adamo parduotuvė";
+    constructor() {
+        name = "Adamo parduotuve";
     }
 
     function createProduct(string memory _name, uint _price) public {
         require(bytes(_name).length > 0);
         require(_price > 0);
         productCount ++;
-        products[productCount] = Product(productCount, _name, _price, msg.sender, false);
-        emit ProductCreated(productCount, _name, _price, msg.sender, false);
+        products[productCount] = Product(productCount, _name, _price, payable(msg.sender), false);
+        emit ProductCreated(productCount, _name, _price, payable(msg.sender), false);
     }
 
+    function transfer() public payable {
+      
+    }
     function purchaseProduct(uint _id) public payable {
         Product memory _product = products[_id];
         address payable _seller = _product.owner;
@@ -48,10 +51,10 @@ contract Marketplace {
         require(msg.value >= _product.price);
         require(!_product.purchased);
         require(_seller != msg.sender);
-        _product.owner = msg.sender;
+        _product.owner = payable(msg.sender);
         _product.purchased = true;
         products[_id] = _product;
-        address(_seller).transfer(msg.value);
-        emit ProductPurchased(productCount, _product.name, _product.price, msg.sender, true);
+        payable(_seller).transfer(msg.value);
+        emit ProductPurchased(productCount, _product.name, _product.price, payable(msg.sender), true);
     }
 }
